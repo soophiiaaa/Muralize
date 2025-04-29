@@ -31,8 +31,6 @@ O objetivo do Muralize é oferecer uma solução eficiente para que **professore
 | Sophia Lacerda     | Back-end e Suporte Geral         |
 | Yasmim Lisboa      | Banco de Dados                   |
 
-> Substitua os nomes acima pelos verdadeiros nomes da equipe e suas responsabilidades.
-
 ---
 
 ## 💪 Tecnologias Utilizadas

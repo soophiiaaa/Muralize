@@ -62,3 +62,13 @@ button:hover {
     display: flex;
     justify-content: center;
 }
+
+.div-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    margin-top: 5%;
+    gap: 1rem;
+}

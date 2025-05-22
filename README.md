@@ -28,7 +28,7 @@ O objetivo do Muralize é oferecer uma solução eficiente para que **professore
 | Nome               | Função no Projeto                |
 |--------------------|----------------------------------|
 | Pedro Henrique     | Front-end                        |
-| Sophia Lacerda     | Back-end e Suporte Geral         |
+| Sophia Lacerda     | Back-end                         |
 | Yasmim Lisboa      | Banco de Dados                   |
 
 ---

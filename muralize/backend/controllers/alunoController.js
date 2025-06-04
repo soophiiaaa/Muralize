@@ -36,15 +36,15 @@ const alunoController = {
     },
 
     atualizar: (req, res) => {
-        const id = req.params.id;
-        const { nome, email, senha } = req.body;
-        const aluno = new Aluno(nome, email, senha);
+        const id = req.params.id
+        const { nome, email, senha } = req.body
+        const aluno = new Aluno(nome, email, senha)
         aluno.atualizar(id, (err, result) => {
             if (err) {
-                return res.status(500).json({ error: 'Erro ao atualizar aluno.' });
+                return res.status(500).json({ error: 'Erro ao atualizar aluno' })
             }
-            res.json({ message: 'Aluno atualizado com sucesso!' });
-        });
+            res.json({ message: 'Aluno atualizado com sucesso!' })
+        })
     },
 
     deletar: (req, res) => {

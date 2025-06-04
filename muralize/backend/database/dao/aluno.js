@@ -13,7 +13,7 @@ class Aluno {
   }
   
   atualizar(id, callback) {
-    const sql = 'UPDATE aluno SET nome = ?, email = ?, senha = ? WHERE id = ?';
+    const sql = 'UPDATE aluno SET nome = ?, email = ?, senha = ? WHERE id_aluno = ?';
     db.query(sql, [this.nome, this.email, this.senha, id], callback);
   }
   
@@ -23,12 +23,12 @@ class Aluno {
   }
   
   static buscarPorId(id, callback) {
-    const sql = 'SELECT * FROM aluno WHERE id = ?';
+    const sql = 'SELECT * FROM aluno WHERE id_aluno = ?';
     db.query(sql, [id], callback);
   }
   
   static deletar(id, callback) {
-    const sql = 'DELETE FROM aluno WHERE id = ?';
+    const sql = 'DELETE FROM aluno WHERE id_aluno = ?';
     db.query(sql, [id], callback);
   }
   }

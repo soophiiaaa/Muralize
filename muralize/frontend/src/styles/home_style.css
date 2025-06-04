@@ -38,11 +38,11 @@ button:hover {
     background-color: var(--clique-botao);
 }
 
-#cadastrar {
+.cadastrar {
     width: 150px;
 }
 
-#container {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,7 +50,7 @@ button:hover {
     max-width: 1200px;
 }
 
-#div-texto {
+.div-texto {
     width: 45%;
     height: 20%;
     justify-content: center;
@@ -58,7 +58,7 @@ button:hover {
     padding: 2%;
 }
 
-#div-img {
+.div-img {
     display: flex;
     justify-content: center;
 }

@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection( {
     host: 'localhost', 
     user: 'root', 
-    password: 'root', 
+    password: 'slbms20070511', 
     database: 'muralize' 
 });
 
@@ -15,3 +15,5 @@ connection.connect(
         }
         console.log('Conexão bem-sucedida com o ID: ' + connection.threadId);
     });
+
+module.exports = connection;

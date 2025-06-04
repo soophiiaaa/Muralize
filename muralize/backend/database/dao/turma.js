@@ -11,7 +11,7 @@ class Turma {
   }
 
   atualizar(id, callback) {
-    const sql = 'UPDATE turma SET nome = ? WHERE id = ?';
+    const sql = 'UPDATE turma SET nome = ? WHERE id_turma = ?';
     db.query(sql, [this.nome, id], callback);
   }
 
@@ -20,11 +20,11 @@ class Turma {
   }
 
   static buscarPorId(id, callback) {
-    db.query('SELECT * FROM turma WHERE id = ?', [id], callback);
+    db.query('SELECT * FROM turma WHERE id_turma = ?', [id], callback);
   }
 
   static deletar(id, callback) {
-    db.query('DELETE FROM turma WHERE id = ?', [id], callback);
+    db.query('DELETE FROM turma WHERE id_turma = ?', [id], callback);
   }
 }
 

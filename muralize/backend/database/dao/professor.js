@@ -31,6 +31,11 @@ class Professor {
     const sql = 'DELETE FROM professor WHERE id_professor = ?';
     db.query(sql, [id], callback);
   }
+  
+
+
   }
+
+
 
 module.exports = Professor;

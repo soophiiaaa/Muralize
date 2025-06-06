@@ -11,6 +11,25 @@ class Aluno {
     const sql = 'INSERT INTO aluno (nome, email, senha) VALUES (?, ?, ?)';
     db.query(sql, [this.nome, this.email, this.senha], callback);
   }
+
+  static entrarNaTurma(idAluno, codigoTurma, callback) {
+  
+  const Buscanobanco = 'SELECT id_turma FROM turma WHERE codigo_turma = ?';
+  db.query(Buscanobanco, [codigoTurma], (err, resultados) => {
+    if (err) return callback(err);
+
+    if (resultados.length === 0) {
+      return callback(new Error('Código da turma inválido'));
+    }
+
+    const idTurma = resultados[0].id_turma;
+
+    
+    const Inserir = 'INSERT INTO aluno_turma (id_aluno, id_turma) VALUES (?, ?)';
+    db.query(Inserir, [idAluno, idTurma], callback);
+  });
+}
+
   
   atualizar(id, callback) {
     const sql = 'UPDATE aluno SET nome = ?, email = ?, senha = ? WHERE id_aluno = ?';

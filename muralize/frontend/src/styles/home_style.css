@@ -1,74 +1,268 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Variáveis para cores e temas */
 :root {
-    --cor-texto: #263238;
-    --cor-principal: #1976D2;
-    --cor-secundaria: #E3F2FD;
-    --cor-fundo: #FFFFFF;
-    --clique-botao: #1367bb;
+  --cor-texto: #263238;
+  --cor-principal: #1976D2;
+  --cor-secundaria: #E3F2FD;
+  --cor-fundo: #FFFFFF;
+  --clique-botao: #1367bb;
+
+  --inicio-bg: var(--cor-principal);
+  --inicio-texto: var(--cor-fundo);
+  --sobre-bg: #f7f7f7;
+  --sobre-texto: #333;
+  --contato-bg: #222;
+  --contato-texto: var(--cor-fundo);
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--cor-texto);
-    margin:0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body, html {
+  height: 100%;
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
 }
 
-button {
-    width: 100px;
-    height: 35px;
-    border-radius: 20px;
-    border: none;
-    background-color: var(--cor-principal);
-    color: var(--cor-fundo);
-    font-weight: bold;
+/* Seções que ocupam toda a tela */
+.section {
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: var(--clique-botao);
+/* Estilo da seção início */
+#inicio {
+  background-color: var(--inicio-bg);
+  color: var(--inicio-texto);
 }
 
-.cadastrar {
-    width: 150px;
-}
-
+/* Container flex para a área principal do início */
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 1200px;
+  flex-wrap: wrap;
 }
 
+/* Div texto e imagem no início */
 .div-texto {
-    width: 45%;
-    height: 20%;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
+  width: 45%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .div-img {
-    display: flex;
-    justify-content: center;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.div-buttons{
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+.div-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  width: 100%;
+}
 
-    margin-top: 5%;
-    gap: 1rem;
+/* Botões */
+button {
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--cor-principal);
+  color: var(--cor-fundo);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--clique-botao);
+}
+
+#cadastrar {
+  width: 150px;
+}
+
+/* Seção Sobre */
+#sobre {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto);
+  padding: 60px 30px;
+  max-width: 900px;
+  margin: 40px auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  line-height: 1.7;
+  font-weight: 400;
+  text-align: justify;
+  font-family: 'Poppins', sans-serif;
+}
+
+#sobre h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 1.5px;
+}
+
+#sobre p {
+  margin-bottom: 20px;
+}
+
+#sobre strong {
+  color: var(--cor-principal);
+  font-weight: 600;
+}
+
+/* Última seção com fundo escuro */
+.section:nth-of-type(3) {
+  background-color: #121212; /* fundo escuro */
+  color: #eee; /* texto claro */
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+}
+
+/* Título da seção */
+.section:nth-of-type(3) h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #64b5f6; /* azul claro para destaque */
+  text-align: center;
+}
+
+/* Estilo do time */
+.team {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;
+  cursor: default;
+  background-color: #1e1e1e; /* fundo escuro dentro do card */
+  padding: 20px;
+  border-radius: 10px;
+  color: #eee;
+  position: relative;
+}
+
+/* Imagem genérica no topo, você pode trocar o src */
+.member .photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid #64b5f6; /* contorno azul */
+  transition: transform 0.3s ease;
+}
+
+/* Remove a animação e tooltip que apareciam no hover */
+.member:hover .photo {
+  transform: none;
+}
+
+/* Remover a tooltip (desabilitar ou esconder) */
+.tooltip {
+  display: none !important;
+}
+
+/* Nome */
+.name {
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #eee;
+  margin-bottom: 15px;
+}
+
+/* GitHub icon visível sempre */
+.github-icon img {
+  width: 40px;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.github-icon:hover img {
+  filter: brightness(0) invert(0.6);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+
+  .div-texto, .div-img {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .div-texto {
+    margin-bottom: 20px;
+  }
+
+  h1, h2 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .div-buttons {
+    justify-content: center;
+  }
+
+  .team {
+    gap: 40px;
+  }
+}
+
+/* Animação de aparecer na rolagem */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }

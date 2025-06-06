@@ -1,32 +1,150 @@
+<!-- register.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../styles/register_style.css">
-    <title>Cadastre-se</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../styles/register_style.css" />
+  <title>Cadastre-se</title>
+  <style>
+    /* CSS para botões de seleção, igual antes */
+    .role-selection {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .role-selection h2 {
+      margin-bottom: 20px;
+      color: var(--cor-principal);
+    }
+
+    .role-selection button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 16px;
+      color: var(--cor-principal);
+      display: inline-block;
+      padding: 10px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .role-selection button:hover {
+      background-color: var(--cor-secundaria);
+    }
+
+    #campo-nome {
+      margin-bottom: 10px;
+    }
+
+    button#botao-formulario {
+      width: 120px;
+    }
+
+    button.voltar-btn {
+      margin-top: 10px;
+      background-color: transparent;
+      color: var(--cor-principal);
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="welcome-back">
-            <h1>Bem-vindo de volta!</h1>
-            <p>Já é cadastrado?</p>
-            <p>Faça login para continuar!</p>
-            <button class="welcome-back-button">ENTRAR</button>
-        </div>
-
-        <div class="register">
-            <h1>Criar uma conta</h1>
-            <form>
-                <input type="text" id="nome" name="nome" placeholder="Nome"><br>
-                <input type="text" id="email" name="email" placeholder="E-mail"><br>
-                <input type="password" id="senha" name="senha" placeholder="Senha"><br>
-                <button>CADASTRAR</button>
-            </form>
-        </div>
+  <div class="container">
+    <div class="welcome-back">
+      <h1>Bem-vindo de volta!</h1>
+      <p>Já é cadastrado?</p>
+      <p>Faça login para continuar!</p>
+      <button class="welcome-back-button" onclick="mostrarLogin()">ENTRAR</button>
     </div>
+
+    <div class="register">
+      <div id="role-selection" class="role-selection">
+        <h2>Você é:</h2>
+        <button onclick="selecionar('aluno')">
+          <img src="../assets/icons/aluno.png" alt="Aluno" width="50" /><br />
+          Aluno
+        </button>
+        <button onclick="selecionar('professor')">
+          <img src="../assets/icons/professor.png" alt="Professor" width="50" /><br />
+          Professor
+        </button>
+      </div>
+
+      <div id="formulario" style="display:none;">
+        <h1 id="titulo-formulario">Criar uma conta</h1>
+        <form>
+          <div id="campo-nome">
+            <input type="text" id="nome" name="nome" placeholder="Nome completo" />
+            <br />
+          </div>
+          <input type="text" id="email" name="email" placeholder="E-mail" />
+          <br />
+          <input type="password" id="senha" name="senha" placeholder="Senha" />
+          <br />
+          <button type="submit" id="botao-formulario">CADASTRAR</button>
+        </form>
+        <button class="voltar-btn" onclick="voltarSelecao()">Voltar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Função para ler parâmetros da URL
+    function getQueryParam(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    function selecionar(tipo) {
+      document.getElementById("role-selection").style.display = "none";
+      document.getElementById("formulario").style.display = "block";
+
+      document.getElementById("titulo-formulario").textContent =
+        "Criar uma conta - " + (tipo === "aluno" ? "Aluno" : "Professor");
+      document.getElementById("botao-formulario").textContent = "CADASTRAR";
+      document.getElementById("campo-nome").style.display = "block";
+
+      localStorage.setItem("tipoUsuario", tipo);
+    }
+
+    function mostrarLogin() {
+      document.getElementById("role-selection").style.display = "none";
+      document.getElementById("formulario").style.display = "block";
+
+      document.getElementById("titulo-formulario").textContent = "Login";
+      document.getElementById("botao-formulario").textContent = "ENTRAR";
+      document.getElementById("campo-nome").style.display = "none";
+
+      localStorage.setItem("tipoUsuario", "login");
+    }
+
+    function voltarSelecao() {
+      document.getElementById("role-selection").style.display = "block";
+      document.getElementById("formulario").style.display = "none";
+    }
+
+    // Rodar no carregamento da página para mostrar o estado correto
+    window.onload = function () {
+      const tipo = getQueryParam("tipo");
+
+      if (tipo === "login") {
+        mostrarLogin();
+      } else if (tipo === "aluno" || tipo === "professor") {
+        selecionar(tipo);
+      } else {
+        // Mostra a seleção padrão (ícones)
+        voltarSelecao();
+      }
+    };
+  </script>
 </body>
 
 </html>

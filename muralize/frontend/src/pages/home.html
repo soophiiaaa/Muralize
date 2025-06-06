@@ -2,27 +2,131 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../styles/home_style.css">
-    <title>Muralize</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muralize</title>
+  <link rel="icon" href="../assets/icons/icon-muralize.jpg" type="image/jpg" sizes="32x32" />
+  <link rel="stylesheet" href="../styles/home_style.css" />
 </head>
 
 <body>
+
+  <section class="section" id="inicio">
     <div class="container">
-        <div class="div-texto">
-            <h1>Muralize</h1>
-            <p>O jeito mais fácil e rápido de gerenciar suas atividades acadêmicas</p>
-            <div class="div-buttons">
-                <button type="button" id="entrar">ENTRAR</button>
-                <button type="button" id="cadastrar">CADASTRAR</button>
-            </div>
+      <div class="div-texto reveal">
+        <h1>Muralize</h1>
+        <p>O jeito mais fácil e rápido de gerenciar suas atividades acadêmicas</p>
+        <div class="div-buttons">
+          <button type="button" id="entrar">ENTRAR</button>
+          <button type="button" id="cadastrar">CADASTRAR</button>
         </div>
-
-        <div class="div-img">
-            <img src="../assets/img/imagem-inicio.png" alt="imagem-inicio" width="460px" height="460px">
-        </div>
+      </div>
+      <div class="div-img reveal">
+        <img src="../assets/img/imagem-inicio.png" alt="imagem-inicio" width="460px" height="460px">
+      </div>
     </div>
-</body>
+  </section>
 
+  <section class="section" id="sobre">
+    <h2 class="reveal">Sobre o Muralize</h2>
+    <h2 class="reveal"></h2>
+  <strong>Muralize</strong> é uma plataforma digital inovadora que transforma o planejamento pedagógico e o acompanhamento do ensino-aprendizagem em um processo simples e eficiente.
+</p>
+<p>
+  Com uma interface prática e intuitiva, a ferramenta foi desenvolvida para atender tanto professores quanto alunos, promovendo organização, autonomia e responsabilidade em cada etapa do processo educacional.
+</p>
+<p>
+  Nossa missão é oferecer um ambiente colaborativo que facilite a criação de planos de aula, o monitoramento contínuo do desempenho dos estudantes e uma comunicação clara e transparente entre todos os envolvidos.
+</p>
+<p>
+  Assim, o Muralize contribui para uma educação mais dinâmica, conectada e eficaz, capaz de atender às reais necessidades da sala de aula moderna.
+</p>
+  </section>
+
+<section class="section" id="time-desenvolvedores">
+  <div class="container">
+    <h2 class="reveal">Conheça o nosso time de desenvolvedores</h2>
+    <div class="team">
+      <div class="member reveal">
+        <img src="https://via.placeholder.com/120" alt="Pedro Henrique" class="photo" />
+        <div class="tooltip">Desenvolvedor Frontend especialista em React e UI/UX.</div>
+        <div class="name">Pedro Henrique</div>
+        <a href="https://github.com/pedrohenrique" target="_blank" rel="noopener noreferrer" class="github-icon" aria-label="GitHub Pedro Henrique">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+        </a>
+      </div>
+      <div class="member reveal">
+        <img src="https://via.placeholder.com/120" alt="Sophia Lacerda" class="photo" />
+        <div class="tooltip">Backend Developer apaixonada por Node.js e bancos de dados.</div>
+        <div class="name">Sophia Lacerda</div>
+        <a href="https://github.com/sophialacerda" target="_blank" rel="noopener noreferrer" class="github-icon" aria-label="GitHub Sophia Lacerda">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+        </a>
+      </div>
+      <div class="member reveal">
+        <img src="https://via.placeholder.com/120" alt="Yasmim Lisboa" class="photo" />
+        <div class="tooltip">Fullstack Developer com foco em soluções inovadoras.</div>
+        <div class="name">Yasmim Lisboa</div>
+        <a href="https://github.com/yasmimlisboa" target="_blank" rel="noopener noreferrer" class="github-icon" aria-label="GitHub Yasmim Lisboa">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Sobreposição para seleção Aluno / Professor -->
+<div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+  background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+
+  <div style="background:#fff; padding:20px; border-radius:8px; text-align:center; max-width:400px; width:90%;">
+    <h2>Escolha seu perfil</h2>
+    <div style="display:flex; justify-content:space-around; margin:20px 0;">
+      <div style="cursor:pointer;" id="select-aluno">
+        <img src="../assets/icons/aluno.png" alt="Aluno" width="100" />
+        <p>Aluno</p>
+      </div>
+      <div style="cursor:pointer;" id="select-professor">
+        <img src="../assets/icons/professor.png" alt="Professor" width="100" />
+        <p>Professor</p>
+      </div>
+    </div>
+    <button id="btn-voltar" style="padding:8px 16px; cursor:pointer;">Voltar</button>
+  </div>
+</div>
+
+  <!-- Script para animações ao rolar -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      for (let el of reveals) {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+          el.classList.add("active");
+        } else {
+          el.classList.remove("active");
+        }
+      }
+    }
+      const btnEntrar = document.getElementById('entrar');
+    const btnCadastrar = document.getElementById('cadastrar');
+
+    btnEntrar.addEventListener('click', () => {
+      window.location.href = 'register.html?tipo=login';
+    });
+
+    btnCadastrar.addEventListener('click', () => {
+      window.location.href = 'register.html';
+    });
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
+
+
+</body>
 </html>

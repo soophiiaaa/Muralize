@@ -1,150 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-  --cor-texto: #263238;
   --cor-principal: #1976D2;
-  --cor-secundaria: #E3F2FD;
   --cor-fundo: #FFFFFF;
+  --cor-texto: #263238;
   --clique-botao: #1367bb;
 }
 
-body, html {
-  height: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  background-color: var(--cor-fundo);
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--cor-secundaria);
+}
+
+/* --- GRID: 2 colunas iguais, painel esquerdo repete em 2 linhas --- */
 .container {
-  display: flex;
-  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "left right"
+    "left right";
+  width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  border-radius: 8px;
+  height: 80vh;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  background: var(--cor-fundo);
 }
 
-/* Área esquerda azul - welcome back */
+/* --- Painel esquerdo (título + imagem) --- */
 .welcome-back {
-  flex: 1;
-  background-color: var(--cor-principal);
-  color: var(--cor-secundaria);
+  grid-area: left;
+  background: var(--cor-principal);
+  color: var(--cor-fundo);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 40px 30px;
-  text-align: center;
+  padding-top: 40px;
 }
 
+.div-img {
+  grid-area: left;
+  background: var(--cor-principal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Título “Bem-vindo de volta!” no topo, em negrito */
 .welcome-back h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.welcome-back p {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-.welcome-back-button {
-  margin-top: 25px;
-  padding: 12px 35px;
-  background-color: var(--cor-secundaria);
-  color: var(--cor-principal);
+  font-size: 2.4rem;
   font-weight: 700;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
 }
 
-.welcome-back-button:hover {
-  background-color: var(--clique-botao);
-  color: var(--cor-secundaria);
+/* Imagem centralizada abaixo do título */
+.div-img img {
+  max-width: 70%;
+  height: auto;
 }
 
-/* Área direita branca - registro */
+/* --- Painel direito: formulário --- */
 .register {
-  flex: 1;
-  background-color: var(--cor-fundo);
-  color: var(--cor-principal);
+  grid-area: right;
+  padding: 40px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 40px 30px;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.05);
-  text-align: center;
 }
 
+/* Cabeçalho do form (ex: “Conecte-se” ou “Criar conta”) */
 .register h1 {
   font-size: 2rem;
-  margin-bottom: 30px;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--cor-principal);
+  text-align: center;
+  margin-bottom: 24px;
 }
 
-.register form {
-  width: 100%;
-  max-width: 350px;
+/* Inputs empilhados e espaçados */
+.register .form-group {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-.register input {
-  padding: 12px 15px;
+.register .form-group input {
+  padding: 14px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 1rem;
-  border: 2px solid var(--cor-principal);
-  border-radius: 25px;
-  outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s;
 }
 
-.register input:focus {
+.register .form-group input:focus {
+  outline: none;
   border-color: var(--clique-botao);
 }
 
-.register button {
-  padding: 12px 0;
+/* Botão centralizado e minimalista */
+.register .action-btn {
+  width: 50%;
+  margin: 0 auto;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
   background-color: var(--cor-principal);
   color: var(--cor-fundo);
-  font-weight: 700;
-  font-size: 1rem;
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s;
 }
 
-.register button:hover {
+.register .action-btn:hover {
   background-color: var(--clique-botao);
 }
 
-/* Responsividade para telas pequenas */
+/* --- Responsivo abaixo de 768px --- */
 @media (max-width: 768px) {
   .container {
+    display: flex;
     flex-direction: column;
     height: auto;
-    min-height: 100vh;
   }
-  
-  .welcome-back, .register {
-    flex: none;
+  .welcome-back,
+  .div-img,
+  .register {
     width: 100%;
-    box-shadow: none;
-    padding: 30px 20px;
+    padding: 20px;
   }
-  
-  .welcome-back {
-    border-radius: 0 0 0 0;
+  .register .action-btn {
+    width: 100%;
   }
 }

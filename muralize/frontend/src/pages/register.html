@@ -5,65 +5,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/icons/icon-muralize.jpg" type="image/jpg" sizes="32x32" />
   <link rel="stylesheet" href="../styles/register_style.css" />
   <title>Cadastre-se</title>
-  <style>
-    /* CSS para botões de seleção, igual antes */
-    .role-selection {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .role-selection h2 {
-      margin-bottom: 20px;
-      color: var(--cor-principal);
-    }
-
-    .role-selection button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      margin: 10px;
-      font-size: 16px;
-      color: var(--cor-principal);
-      display: inline-block;
-      padding: 10px;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    .role-selection button:hover {
-      background-color: var(--cor-secundaria);
-    }
-
-    #campo-nome {
-      margin-bottom: 10px;
-    }
-
-    button#botao-formulario {
-      width: 120px;
-    }
-
-    button.voltar-btn {
-      margin-top: 10px;
-      background-color: transparent;
-      color: var(--cor-principal);
-      border: none;
-      cursor: pointer;
-      text-decoration: underline;
-      font-size: 14px;
-    }
-  </style>
 </head>
 
 <body>
   <div class="container">
     <div class="welcome-back">
       <h1>Bem-vindo de volta!</h1>
-      <p>Já é cadastrado?</p>
-      <p>Faça login para continuar!</p>
-      <button class="welcome-back-button" onclick="mostrarLogin()">ENTRAR</button>
     </div>
+          <div class="div-img reveal">
+        <img src="../assets/img/imagem-login.png" alt="imagem-inicio" width="460px" height="460px">
+      </div>
 
     <div class="register">
       <div id="role-selection" class="role-selection">
@@ -131,19 +85,20 @@
       document.getElementById("formulario").style.display = "none";
     }
 
-    // Rodar no carregamento da página para mostrar o estado correto
-    window.onload = function () {
-      const tipo = getQueryParam("tipo");
+window.onload = function () {
+  const tipo = getQueryParam("tipo"); // "login" ou "aluno"/"professor"
+  const usuario = getQueryParam("usuario"); // "aluno" ou "professor"
 
-      if (tipo === "login") {
-        mostrarLogin();
-      } else if (tipo === "aluno" || tipo === "professor") {
-        selecionar(tipo);
-      } else {
-        // Mostra a seleção padrão (ícones)
-        voltarSelecao();
-      }
-    };
+  if (tipo === "login") {
+    mostrarLogin();
+    if (usuario) localStorage.setItem("tipoUsuario", usuario);
+  } else if (tipo === "aluno" || tipo === "professor") {
+    selecionar(tipo);
+  } else {
+    voltarSelecao();
+  }
+};
+
   </script>
 </body>
 

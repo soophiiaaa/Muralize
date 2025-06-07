@@ -109,7 +109,7 @@ CREATE TABLE `professor` (
   `id_professor` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `tipo` varchar(20) DEFAULT `professor`,
+  `tipo` varchar(20) DEFAULT 'professor',
   `senha` varchar(20) NOT NULL,
   PRIMARY KEY (`id_professor`),
   UNIQUE KEY `email` (`email`)
@@ -135,7 +135,8 @@ DROP TABLE IF EXISTS `turma`;
 CREATE TABLE `turma` (
   `id_turma` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
-  `ano` varchar(50) NOT NULL,
+  `ano` INT NOT NULL,
+  `codigo` varchar(20) NULL,
   `id_professor` int DEFAULT NULL,
   PRIMARY KEY (`id_turma`),
   KEY `id_professor` (`id_professor`),

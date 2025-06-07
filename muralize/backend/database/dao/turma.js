@@ -1,20 +1,21 @@
 const db = require('../db');
 
 class Turma {
-  constructor(nome) {
+  constructor(nome, ano, id_professor) {
     this.nome = nome;
+    this.ano = ano;
+    this.id_professor = id_professor;
     this.codigo = Turma.gerarCodigoAleatorio();
-    this.alunos = []
   }
 
   salvar(callback) {
-    const sql = 'INSERT INTO turma (nome, codigo_turma) VALUES (?, ?)';
-    db.query(sql, [this.nome, this.codigo, this.alunos], callback);
+    const sql = 'INSERT INTO turma (nome, ano, id_professor, codigo) VALUES (?, ?, ?, ?)';
+    db.query(sql, [this.nome, this.ano, this.id_professor, this.codigo], callback);
   }
 
   atualizar(id, callback) {
-    const sql = 'UPDATE turma SET nome = ?, codigo_turma = ? WHERE id_turma = ?';
-    db.query(sql, [this.nome, this.codigo, id], callback);
+    const sql = 'UPDATE turma SET nome = ?, ano = ?, id_professor = ?, codigo = ? WHERE id_turma = ?';
+    db.query(sql, [this.nome, this.ano, this.id_professor, this.codigo, id], callback);
   }
 
   static listarTodos(callback) {

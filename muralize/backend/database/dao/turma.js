@@ -40,4 +40,3 @@ class Turma {
 }
 
 module.exports = Turma;
-

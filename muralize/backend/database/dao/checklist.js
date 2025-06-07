@@ -1,4 +1,4 @@
-const db = require('./database/db');
+const db = require('../db');
 
 class Checklist {
   constructor(concluido, data_conclusao) {

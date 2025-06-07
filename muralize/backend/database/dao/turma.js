@@ -1,14 +1,15 @@
-const db = require('./database/db');
+const db = require('../db');
 
 class Turma {
   constructor(nome) {
     this.nome = nome;
     this.codigo = Turma.gerarCodigoAleatorio();
+    this.alunos = []
   }
 
   salvar(callback) {
     const sql = 'INSERT INTO turma (nome, codigo_turma) VALUES (?, ?)';
-    db.query(sql, [this.nome, this.codigo], callback);
+    db.query(sql, [this.nome, this.codigo, this.alunos], callback);
   }
 
   atualizar(id, callback) {

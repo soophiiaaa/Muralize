@@ -23,10 +23,11 @@ DROP TABLE IF EXISTS `aluno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aluno` (
-  `id_aluno` int NOT NULL,
+  `id_aluno` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(20) DEFAULT NULL,
+  `tipo` varchar(20) DEFAULT 'aluno',
   `id_turma` int DEFAULT NULL,
   PRIMARY KEY (`id_aluno`),
   KEY `id_turma` (`id_turma`),
@@ -51,7 +52,7 @@ DROP TABLE IF EXISTS `atividade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atividade` (
-  `id_atividade` int NOT NULL,
+  `id_atividade` int NOT NULL AUTO_INCREMENT,
   `descricao` text,
   `tipo` varchar(100) DEFAULT NULL,
   `data_entrega` datetime DEFAULT NULL,
@@ -79,7 +80,7 @@ DROP TABLE IF EXISTS `checklist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `checklist` (
-  `id_checklist` int NOT NULL,
+  `id_checklist` int NOT NULL AUTO_INCREMENT,
   `semana` int DEFAULT NULL,
   `id_aluno` int DEFAULT NULL,
   PRIMARY KEY (`id_checklist`),
@@ -105,9 +106,10 @@ DROP TABLE IF EXISTS `professor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `professor` (
-  `id_professor` int NOT NULL,
+  `id_professor` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `tipo` varchar(20) DEFAULT `professor`,
   `senha` varchar(20) NOT NULL,
   PRIMARY KEY (`id_professor`),
   UNIQUE KEY `email` (`email`)
@@ -131,7 +133,7 @@ DROP TABLE IF EXISTS `turma`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `turma` (
-  `id_turma` int NOT NULL,
+  `id_turma` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `ano` varchar(50) NOT NULL,
   `id_professor` int DEFAULT NULL,

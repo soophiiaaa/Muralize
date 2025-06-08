@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 
 const alunoController = require('./controllers/alunoController')
 const professorController = require('./controllers/professorController')
+const loginController = require('./controllers/loginController')
 const turmaController = require('./controllers/turmaController')
 const atividadeController = require('./controllers/atividadeController')
 
@@ -31,6 +32,8 @@ app.get('/professores/:id', professorController.buscarPorId)
 app.post('/professores', professorController.criar)
 app.put('/professores/:id', professorController.atualizar)
 app.delete('/professores/:id', professorController.deletar)
+
+app.post('/login', loginController.login)
 
 app.get('/turmas', turmaController.listarTodos)
 app.get('/turmas/:id', turmaController.buscarPorId)

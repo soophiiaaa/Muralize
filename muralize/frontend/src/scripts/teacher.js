@@ -27,7 +27,7 @@ document.getElementById('btn-cancelar-criacao').addEventListener('click', () => 
   document.getElementById('input-ano').value = '';
 });
 
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
   if (!maisBtn.contains(e.target) && !menuMais.contains(e.target)) {
     menuMais.style.display = 'none';
   }

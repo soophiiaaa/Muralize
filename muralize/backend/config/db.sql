@@ -80,9 +80,10 @@ DROP TABLE IF EXISTS `atividade`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atividade` (
   `id_atividade` int NOT NULL AUTO_INCREMENT,
+  `titulo` text,
   `descricao` text,
   `tipo` varchar(100) DEFAULT NULL,
-  `data_entrega` datetime DEFAULT NULL,
+  `data_entrega` varchar(100) DEFAULT NULL,
   `id_turma` int DEFAULT NULL,
   PRIMARY KEY (`id_atividade`),
   KEY `id_turma` (`id_turma`),

@@ -1,4 +1,3 @@
-const { listarTodos, buscarPorId } = require('../database/dao/aluno')
 const Professor = require('../database/dao/professor')
 
 const professorController = {

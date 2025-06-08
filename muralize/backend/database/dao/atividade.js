@@ -1,20 +1,22 @@
 const db = require('../db');
 
 class Atividade {
-  constructor(titulo, descricao, tipo) {
+  constructor(id_turma, titulo, descricao, tipo, data_entrega) {
+    this.id_turma = id_turma
     this.titulo = titulo;
     this.descricao = descricao;
     this.tipo = tipo;
+    this.data_entrega = data_entrega;
   }
 
   salvar(callback) {
-    const sql = 'INSERT INTO atividade (titulo, descricao, tipo) VALUES (?, ?, ?)';
-    db.query(sql, [this.titulo, this.descricao, this.tipo], callback);
+    const sql = 'INSERT INTO atividade (id_turma, titulo, descricao, tipo, data_entrega) VALUES (?, ?, ?, ?, ?)';
+    db.query(sql, [this.id_turma, this.titulo, this.descricao, this.tipo, this.data_entrega], callback);
   }
   
   atualizar(id, callback) {
-    const sql = 'UPDATE atividade SET titulo = ?, descricao = ?, tipo = ? WHERE id = ?';
-    db.query(sql, [this.titulo, this.descricao, this.tipo, id], callback);
+    const sql = 'UPDATE atividade SET id_turma = ? titulo = ?, descricao = ?, tipo = ?, data_entrega = ? WHERE id = ?';
+    db.query(sql, [this.id_turma, this.titulo, this.descricao, this.tipo, this.data_entrega, id], callback);
   }
   
   static listarTodos(callback) {

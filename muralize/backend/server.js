@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const alunoController = require('./controllers/alunoController')
 const professorController = require('./controllers/professorController')
 const turmaController = require('./controllers/turmaController')
+const atividadeController = require('./controllers/atividadeController')
 
 const app = express()
 const port = 3000
@@ -31,12 +32,18 @@ app.post('/professores', professorController.criar)
 app.put('/professores/:id', professorController.atualizar)
 app.delete('/professores/:id', professorController.deletar)
 
-app.get('/turma', turmaController.listarTodos)
-app.get('/turma/:id', turmaController.buscarPorId)
-app.post('/turma', turmaController.criar)
-app.post('/turma/:id/entrar', turmaController.adicionarAluno)
-app.put('/turma/:id', turmaController.atualizar)
-app.delete('/turma/:id', turmaController.deletar)
+app.get('/turmas', turmaController.listarTodos)
+app.get('/turmas/:id', turmaController.buscarPorId)
+app.post('/turmas', turmaController.criar)
+app.post('/turmas/:id/entrar', turmaController.adicionarAluno)
+app.put('/turmas/:id', turmaController.atualizar)
+app.delete('/turmas/:id', turmaController.deletar)
+
+app.get('/atividades', atividadeController.listarTodos)
+app.get('/atividades/:id', atividadeController.buscarPorId)
+app.post('/atividades', atividadeController.criar)
+app.put('/atividades/:id', atividadeController.atualizar)
+app.delete('/atividades/:id', atividadeController.deletar)
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)

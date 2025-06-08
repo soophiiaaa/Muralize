@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerenciador de Turmas</title>
+  <link rel="stylesheet" href="../styles/student_style.css">
+</head>
+<body>
+  <h1 id="titulo-turmas">Minhas turmas</h1>
+
+  <!-- + -->
+  <button id="mais-btn">+</button>
+
+  <!-- Menu de opções simplificado para aluno -->
+  <div id="menu-mais">
+    <button id="btn-inserir-codigo">Inserir código da turma</button>
+  </div>
+
+  <!-- Modal para inserir código da turma -->
+  <div id="modal-inserir-codigo" class="modal">
+    <div class="modal-content">
+      <h2>Inserir código da turma</h2>
+      <input type="text" id="input-codigo" placeholder="Digite o código da turma">
+      <button id="btn-confirmar-codigo">Confirmar</button>
+      <button id="btn-cancelar-codigo">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Área onde as turmas aparecem -->
+  <div id="turmas"></div>
+
+  <!-- Foto de perfil -->
+  <div id="perfil">
+    <img src="../assets/icons/teacher.png" alt="Perfil">
+  </div>
+
+  <!-- Menu do perfil -->
+  <div id="menu-perfil">
+    <button>Editar perfil</button>
+    <button>Sair</button>
+  </div>
+
+  <script src="../scripts/student.js"></script>
+</body>
+</html>

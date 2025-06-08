@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="../assets/icons/icon-muralize.jpg" type="image/jpg" sizes="32x32" />
   <link rel="stylesheet" href="../styles/register_style.css" />
-  <title>Cadastre-se</title>
+  <title>Login e Cadastro</title>
 </head>
 
 <body>
@@ -43,62 +43,14 @@
           <br />
           <input type="password" id="senha" name="senha" placeholder="Senha" />
           <br />
-          <button type="submit" id="botao-formulario">CADASTRAR</button>
+          <button type="submit" id="botao-formulario" onclick="enviarFormulario()">CADASTRAR</button>
         </form>
         <button class="voltar-btn" onclick="voltarSelecao()">Voltar</button>
       </div>
     </div>
   </div>
 
-  <script>
-    // Função para ler parâmetros da URL
-    function getQueryParam(param) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(param);
-    }
-
-    function selecionar(tipo) {
-      document.getElementById("role-selection").style.display = "none";
-      document.getElementById("formulario").style.display = "block";
-
-      document.getElementById("titulo-formulario").textContent =
-        "Criar uma conta - " + (tipo === "aluno" ? "Aluno" : "Professor");
-      document.getElementById("botao-formulario").textContent = "CADASTRAR";
-      document.getElementById("campo-nome").style.display = "block";
-
-      localStorage.setItem("tipoUsuario", tipo);
-    }
-
-    function mostrarLogin() {
-      document.getElementById("role-selection").style.display = "none";
-      document.getElementById("formulario").style.display = "block";
-
-      document.getElementById("titulo-formulario").textContent = "Login";
-      document.getElementById("botao-formulario").textContent = "ENTRAR";
-      document.getElementById("campo-nome").style.display = "none";
-
-      localStorage.setItem("tipoUsuario", "login");
-    }
-
-    function voltarSelecao() {
-      document.getElementById("role-selection").style.display = "block";
-      document.getElementById("formulario").style.display = "none";
-    }
-
-    window.onload = function () {
-      const tipo = getQueryParam("tipo"); // "login" ou "aluno"/"professor"
-      const usuario = getQueryParam("usuario"); // "aluno" ou "professor"
-
-      if (tipo === "login") {
-        mostrarLogin();
-        if (usuario) localStorage.setItem("tipoUsuario", usuario);
-      } else if (tipo === "aluno" || tipo === "professor") {
-        selecionar(tipo);
-      } else {
-        voltarSelecao();
-      }
-    };
-
+  <script src="../scripts/register.js">
   </script>
 </body>
 

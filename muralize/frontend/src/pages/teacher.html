@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerenciador de Turmas</title>
+  <link rel="stylesheet" href="../styles/teacher_style.css">
+</head>
+<body>
+    <h1 id="titulo-turmas">Minhas turmas</h1>
+  <!-- Botão "Mais" -->
+  <button id="mais-btn">+</button>
+
+  <!-- Menu de opções -->
+  <div id="menu-mais">
+    <button onclick="criarTurma()">Cadastrar nova turma</button>
+  </div>
+
+  <!-- Modal criar turma -->
+  <div id="modal-criar-turma" class="modal">
+  <div class="modal-content">
+    <h2>Criar nova turma</h2>
+    <input type="text" id="input-nome" placeholder="Nome da turma">
+    <input type="number" id="input-ano" placeholder="Ano da turma">
+    <button id="btn-confirmar-criacao">Criar</button>
+    <button id="btn-cancelar-criacao">Cancelar</button>
+  </div>
+</div>
+
+  <!-- Área onde as turmas aparecem -->
+  <div id="turmas"></div>
+
+  <!-- Foto de perfil -->
+  <div id="perfil">
+    <img src="../assets/icons/teacher.png" alt="Perfil">
+  </div>
+
+  <!-- Menu do perfil -->
+  <div id="menu-perfil">
+    <button>Editar perfil</button>
+    <button>Sair</button>
+  </div>
+
+  <script src="../scripts/teacher.js"></script>
+</body>
+</html>

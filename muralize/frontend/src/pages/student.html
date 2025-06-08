@@ -38,9 +38,29 @@
   <!-- Menu do perfil -->
   <div id="menu-perfil">
     <button>Editar perfil</button>
-    <button>Sair</button>
+    <button id="btn-sair">Sair</button>
   </div>
+  <div id="modal-perfil" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Editar Perfil</h2>
+
+    <label for="input-nome">Nome</label>
+    <input type="text" id="input-nome" placeholder="Seu nome" />
+
+    <label for="input-foto">Foto de perfil</label>
+    <input type="file" id="input-foto" accept="image/*" />
+
+    <label for="input-senha">Nova senha</label>
+    <input type="password" id="input-senha" placeholder="Nova senha" />
+
+    <div style="margin-top: 16px;">
+      <button onclick="salvarPerfil()">Salvar</button>
+      <button onclick="fecharModalPerfil()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
   <script src="../scripts/student.js"></script>
+   <script src="../scripts/perfil.js"></script>
 </body>
 </html>

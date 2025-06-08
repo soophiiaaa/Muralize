@@ -36,14 +36,14 @@ window.onload = function () {
   const tipo = getQueryParam("tipo"); // "login" ou "aluno"/"professor"
   const usuario = getQueryParam("usuario"); // "aluno" ou "professor"
 
-  if (tipo === "login") {
-    mostrarLogin();
-    if (usuario) localStorage.setItem("tipoUsuario", usuario);
-  } else if (tipo === "aluno" || tipo === "professor") {
-    selecionar(tipo);
-  } else {
-    voltarSelecao();
-  }
-};
+      if (tipo === "login") {
+        mostrarLogin();
+        if (usuario) localStorage.setItem("tipoUsuario", usuario);
+      } else if (tipo === "aluno" || tipo === "professor") {
+        selecionar(tipo);
+      } else {
+        voltarSelecao();
+      }
+    };
 
-
+    

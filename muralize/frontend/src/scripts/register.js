@@ -45,5 +45,30 @@
         voltarSelecao();
       }
     };
-
     
+    function enviarFormulario(event) {
+  event.preventDefault(); // Impede o envio padrão do formulário
+
+  const tipoUsuario = localStorage.getItem("tipoUsuario");
+
+  if (!tipoUsuario || tipoUsuario === "login") {
+    alert("Por favor, selecione se você é aluno ou professor.");
+    return;
+  }
+
+  if (document.getElementById("botao-formulario").textContent === "CADASTRAR") {
+    // Redireciona após cadastro
+    if (tipoUsuario === "aluno") {
+      window.location.href = "student.html";
+    } else if (tipoUsuario === "professor") {
+      window.location.href = "teacher.html";
+    }
+  } else {
+    // Redireciona após login
+    if (tipoUsuario === "aluno") {
+      window.location.href = "student.html";
+    } else if (tipoUsuario === "professor") {
+      window.location.href = "teacher.html";
+    }
+  }
+}

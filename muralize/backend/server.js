@@ -10,15 +10,14 @@ const port = 3000
 
 app.use(bodyParser.json())
 
-// Simula o usuário logado
+//simulação de usuário
 app.use((req, res, next) => {
-    // Aqui você escolhe manualmente qual tipo de usuário você quer testar:
     req.user = {
-        id: 1,              // id fictício
-        tipo: 'professor'   // altere para 'aluno' para testar como aluno
-    };
-    next();
-});
+        id: 2,             
+        tipo: 'aluno' 
+    }
+    next()
+})
 
 app.get('/alunos', alunoController.listarTodos)
 app.get('/alunos/:id', alunoController.buscarPorId)
@@ -35,6 +34,7 @@ app.delete('/professores/:id', professorController.deletar)
 app.get('/turma', turmaController.listarTodos)
 app.get('/turma/:id', turmaController.buscarPorId)
 app.post('/turma', turmaController.criar)
+app.post('/turma/:id/entrar', turmaController.adicionarAluno)
 app.put('/turma/:id', turmaController.atualizar)
 app.delete('/turma/:id', turmaController.deletar)
 

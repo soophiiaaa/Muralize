@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: muralize
 -- ------------------------------------------------------
--- Server version	8.0.42-0ubuntu0.22.04.1
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,7 +32,7 @@ CREATE TABLE `aluno` (
   PRIMARY KEY (`id_aluno`),
   KEY `id_turma` (`id_turma`),
   CONSTRAINT `aluno_ibfk_1` FOREIGN KEY (`id_turma`) REFERENCES `turma` (`id_turma`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,34 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
+INSERT INTO `aluno` VALUES (1,'Maria','msf1@aluno.ifal.edu.br','mayaraemaraisa','aluno',NULL);
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `aluno_turma`
+--
+
+DROP TABLE IF EXISTS `aluno_turma`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `aluno_turma` (
+  `id_aluno` int NOT NULL,
+  `id_turma` int NOT NULL,
+  PRIMARY KEY (`id_aluno`,`id_turma`),
+  KEY `id_turma` (`id_turma`),
+  CONSTRAINT `aluno_turma_ibfk_1` FOREIGN KEY (`id_aluno`) REFERENCES `aluno` (`id_aluno`),
+  CONSTRAINT `aluno_turma_ibfk_2` FOREIGN KEY (`id_turma`) REFERENCES `turma` (`id_turma`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `aluno_turma`
+--
+
+LOCK TABLES `aluno_turma` WRITE;
+/*!40000 ALTER TABLE `aluno_turma` DISABLE KEYS */;
+/*!40000 ALTER TABLE `aluno_turma` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -109,11 +136,11 @@ CREATE TABLE `professor` (
   `id_professor` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `tipo` varchar(20) DEFAULT 'professor',
   `senha` varchar(20) NOT NULL,
+  `tipo` varchar(20) DEFAULT 'professor',
   PRIMARY KEY (`id_professor`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +149,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
+INSERT INTO `professor` VALUES (1,'Marcos','maf1@aluno.ifal.edu.br','professor','dragonball2013');
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,13 +163,13 @@ DROP TABLE IF EXISTS `turma`;
 CREATE TABLE `turma` (
   `id_turma` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
-  `ano` INT NOT NULL,
-  `codigo` varchar(20) NULL,
+  `ano` int NOT NULL,
+  `codigo` varchar(20) DEFAULT NULL,
   `id_professor` int DEFAULT NULL,
   PRIMARY KEY (`id_turma`),
   KEY `id_professor` (`id_professor`),
   CONSTRAINT `turma_ibfk_1` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id_professor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +178,7 @@ CREATE TABLE `turma` (
 
 LOCK TABLES `turma` WRITE;
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
+INSERT INTO `turma` VALUES (1,'Matemática',2025,'GWXRX4',NULL),(2,'Matemática II',2025,'K0RIZ1',NULL),(3,'Matemática III',2025,'VF65TA',1);
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -162,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-15 14:57:52
+-- Dump completed on 2025-06-07 22:18:01

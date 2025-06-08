@@ -42,6 +42,24 @@ const turmaController = {
         })
     }, 
 
+    adicionarAluno: (req, res) => {
+        const tipo = req.user.tipo
+        if (tipo !== 'aluno') {
+            return res.status(403).json({ error: 'Apenas alunos podem ser adicionados nas turmas' })
+        }
+
+        const id_aluno = req.user.id
+        const id_professor = req.params.id
+
+        Turma.adicionarAluno(id_aluno, id_professor, (err, result) => {
+            if (err) {
+                console.error(err)
+                return res.status(500).json({ error: 'Erro ao adicionar aluno' })
+            }
+            res.json({ message: 'Aluno adicionado à turma com sucesso!' })
+        })
+    },
+
     atualizar: (req, res) => {
         const id = req.params.id
         const { nome, ano, id_professor } = req.body

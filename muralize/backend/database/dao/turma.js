@@ -39,6 +39,22 @@ class Turma {
     }
     return codigoGerado;
   }
+
+  static adicionarAluno(id_aluno, id_turma, callback) {
+    const sql = 'INSERT INTO aluno_turma (id_aluno, id_turma) VALUES (?, ?)'
+    db.query(sql, [id_aluno, id_turma], (err, result) => {
+      if (err) {
+        return callback(err)
+      }
+      const sqlUpdate = 'UPDATE aluno SET id_turma = ? WHERE id_aluno = ?'
+      db.query(sqlUpdate, [id_turma, id_aluno], (err, resultUpdate) => {
+        if (err) {
+          return callback(err)
+        }
+        callback(null, { insert: result, update: resultUpdate })
+      })
+    })
+  }
 }
 
 module.exports = Turma;

@@ -15,17 +15,11 @@ function fecharModalPerfil() {
 
 function salvarPerfil() {
   const novoNome = document.getElementById("input-nome").value;
-  const novaSenha = document.getElementById("input-senha").value;
   const novaFoto = document.getElementById("input-foto").files[0];
 
   if (novoNome) {
     localStorage.setItem("nomeUsuario", novoNome);
   }
-
-  if (novaSenha) {
-    localStorage.setItem("senhaUsuario", novaSenha);
-  }
-
   if (novaFoto) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -47,6 +41,6 @@ window.addEventListener("load", () => {
   }
 });
 
-document.getElementById("btn-sair").addEventListener("click", ()=>{
-    window.location.href="../pages/home.html"
+document.getElementById("btn-sair").addEventListener("click", () => {
+  window.location.href = "../pages/home.html";
 });

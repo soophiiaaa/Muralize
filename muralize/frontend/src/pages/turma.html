@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Turma</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .titulo-turma {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .menu-superior {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .botao-mais {
+      font-size: 28px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 5px;
+      z-index: 1;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .quadro {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="titulo-turma" id="tituloTurma">Turma</div>
+
+  <div class="menu-superior">
+    <button class="botao-mais" onclick="toggleDropdown()">+</button>
+    <div class="dropdown" id="dropdownMenu">
+      <a onclick="adicionarQuadro('Opção 1')">Opção 1</a>
+      <a onclick="adicionarQuadro('Opção 2')">Opção 2</a>
+      <a onclick="adicionarQuadro('Opção 3')">Opção 3</a>
+    </div>
+  </div>
+
+  <div id="areaQuadros">
+    <!-- Quadros aparecerão aqui -->
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nome = params.get('nome') || 'Turma';
+    const ano = params.get('ano') || '';
+    document.getElementById('tituloTurma').textContent = `${nome} ${ano}`;
+
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function adicionarQuadro(titulo) {
+      const area = document.getElementById('areaQuadros');
+      const quadro = document.createElement('div');
+      quadro.className = 'quadro';
+      quadro.innerHTML = `<h3>${titulo}</h3><p>Conteúdo da ${titulo}</p>`;
+      area.appendChild(quadro);
+      document.getElementById('dropdownMenu').style.display = 'none';
+    }
+
+    // Esconder menu se clicar fora
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('dropdownMenu');
+      const botao = document.querySelector('.botao-mais');
+      if (!menu.contains(e.target) && !botao.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

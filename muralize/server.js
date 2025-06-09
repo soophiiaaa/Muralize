@@ -1,10 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const alunoController = require('./controllers/alunoController')
-const professorController = require('./controllers/professorController')
-const turmaController = require('./controllers/turmaController')
-const atividadeController = require('./controllers/atividadeController')
+const alunoController = require('./backend/controllers/alunoController')
+const professorController = require('./backend/controllers/professorController')
+const turmaController = require('./backend/controllers/turmaController')
+const atividadeController = require('./backend/controllers/atividadeController')
 
 const app = express()
 const port = 3000

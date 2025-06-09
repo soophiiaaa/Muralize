@@ -1,0 +1,62 @@
+ body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .titulo-turma {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .menu-superior {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .botao-mais {
+      font-size: 28px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 5px;
+      z-index: 1;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .quadro {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }

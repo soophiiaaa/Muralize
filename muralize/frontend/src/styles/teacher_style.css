@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -11,12 +10,19 @@ body {
 }
 
 #titulo-turmas {
-  position: absolute;
-  top: 20px;
-  left: 60px;
+  /* removido position absolute para evitar sobreposição */
+  margin: 20px 60px;
   font-size: 24px;
   font-weight: bold;
   color: #333;
+  /* Se quiser deixar fixo no topo, substitua por:
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 20px 60px;
+  z-index: 10;
+  border-bottom: 1px solid #ddd;
+  */
 }
 
 #mais-btn {
@@ -91,7 +97,7 @@ body {
 
 #menu-perfil {
   position: absolute;
-  top: 110px; /* um pouco abaixo da imagem */
+  top: 110px;
   right: 20px;
   background: white;
   border: 1px solid #ccc;
@@ -120,13 +126,16 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 60px;
+  padding: 0 60px 60px 60px;
+  margin-top: 10px;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px); /* para garantir scroll dentro da área visível */
 }
 
 .turma {
   width: 260px;
   height: 160px;
-  background-color: #007bff; /* azul com bom contraste */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 12px;
@@ -196,4 +205,3 @@ body {
 .modal-content button:hover {
   background-color: #0056b3;
 }
-

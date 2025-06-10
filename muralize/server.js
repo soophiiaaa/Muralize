@@ -1,11 +1,18 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
+<<<<<<< HEAD:muralize/backend/server.js
 const alunoController = require('./controllers/alunoController')
 const professorController = require('./controllers/professorController')
 const loginController = require('./controllers/loginController')
 const turmaController = require('./controllers/turmaController')
 const atividadeController = require('./controllers/atividadeController')
+=======
+const alunoController = require('./backend/controllers/alunoController')
+const professorController = require('./backend/controllers/professorController')
+const turmaController = require('./backend/controllers/turmaController')
+const atividadeController = require('./backend/controllers/atividadeController')
+>>>>>>> b0ab4a305d68255935965e44c22cdb70d63f22fc:muralize/server.js
 
 const app = express()
 const port = 3000

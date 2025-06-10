@@ -1,7 +1,11 @@
 const btnEntrar = document.getElementById('entrar');
 const btnCadastrar = document.getElementById('cadastrar');
 const overlay = document.getElementById('overlay');
+<<<<<<< HEAD
 let tipoAcao = ""; // login ou cadastro
+=======
+let tipoAcao = "";
+>>>>>>> b0ab4a305d68255935965e44c22cdb70d63f22fc
 
 btnEntrar.addEventListener('click', () => {
   tipoAcao = "login";
@@ -32,8 +36,13 @@ function redirecionarComTipo(tipoUsuario) {
   window.location.href = url;
 }
 
+<<<<<<< HEAD
 // Animação on scroll
 const reveals = document.querySelectorAll(".reveal");
+=======
+const reveals = document.querySelectorAll(".reveal");
+
+>>>>>>> b0ab4a305d68255935965e44c22cdb70d63f22fc
 function revealOnScroll() {
   for (let el of reveals) {
     const windowHeight = window.innerHeight;

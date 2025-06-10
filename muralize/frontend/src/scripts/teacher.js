@@ -49,7 +49,10 @@ document.getElementById('btn-confirmar-criacao').addEventListener('click', () =>
   const turma = document.createElement('div');
   turma.className = 'turma';
   turma.textContent = `${nome} - ${ano}`;
-  turma.onclick = () => alert(`Entrando na turma ${nome}...`);
+  turma.onclick = () => {
+  const url = `turma.html?nome=${encodeURIComponent(nome)}&ano=${encodeURIComponent(ano)}`;
+  window.location.href = url;
+};
 
   document.getElementById('turmas').appendChild(turma);
 

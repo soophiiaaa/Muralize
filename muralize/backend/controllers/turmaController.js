@@ -1,14 +1,26 @@
 const Turma = require('../database/dao/turma')
+const crypto = require('crypto'); 
 
 const turmaController = {
-    listarTodos: (req, res) => {
-        Turma.listarTodos((err, results) => {
-            if (err) {
-                return res.status(500).json({ error: 'Erro ao listar turmas' })
-            }
-            res.json(results)
-        })
-    },
+listarTodos: (req, res) => {
+  const { professorId } = req.query;
+
+  if (professorId) {
+    Turma.listarPorProfessor(professorId, (err, turmas) => {
+      if (err) {
+        return res.status(500).json({ erro: 'Erro ao listar turmas do professor.' });
+      }
+      res.status(200).json(turmas);
+    });
+  } else {
+    Turma.listarTodos((err, turmas) => {
+      if (err) {
+        return res.status(500).json({ erro: 'Erro ao listar turmas.' });
+      }
+      res.status(200).json(turmas);
+    });
+  }
+},
 
     buscarPorId: (req, res) => {
         const id = req.params.id
@@ -22,25 +34,28 @@ const turmaController = {
             res.json(result[0])
         })
     }, 
+  criar: (req, res) => {
+    const { nome, ano, id_professor, tipo } = req.body;
 
-    criar: (req, res) => {
-        const tipo = req.user.tipo
-        if (tipo !== 'professor') {
-            return res.status(403).json({ error: 'Apenas professores podem criar turmas' })
-        }
+    if (tipo !== "professor") {
+      return res.status(403).json({ erro: "Apenas professores podem criar turmas." });
+    }
 
-        const { nome, ano } = req.body
-        const id_professor = req.user.id
-
-        const turma = new Turma(nome, ano, id_professor)
-        turma.salvar((err, result) => {
-            if (err) {
-                console.error(err)
-                return res.status(500).json({ error: 'Erro ao criar turma' })
-            }
-            res.status(201).json({ message: 'Turma criada com sucesso!' })
-        })
-    }, 
+    // Criar nova turma com código gerado automaticamente
+    const novaTurma = new Turma(nome, ano, id_professor);
+ // Salvar no banco
+    novaTurma.salvar((err, resultado) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ erro: "Erro ao criar turma." });
+      }
+// Retorna o código da turma para o front
+      res.status(201).json({
+        mensagem: "Turma criada com sucesso",
+        codigo: novaTurma.codigo
+      });
+    });
+  },
 
     adicionarAluno: (req, res) => {
         const tipo = req.user.tipo

@@ -46,8 +46,6 @@ window.addEventListener('click', (e) => {
   if (!perfil.contains(e.target) && !menuPerfil.contains(e.target)) {
     menuPerfil.style.display = 'none';
   }
-
-  // Fecha modal ao clicar fora da modal content
   if (e.target === modalInserirCodigo) {
     modalInserirCodigo.style.display = 'none';
     document.getElementById('input-codigo').value = '';

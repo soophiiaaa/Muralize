@@ -25,7 +25,6 @@ body {
   background: var(--cor-secundaria);
 }
 
-/* --- GRID: 2 colunas iguais, painel esquerdo repete em 2 linhas --- */
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -42,7 +41,6 @@ body {
   background: var(--cor-fundo);
 }
 
-/* --- Painel esquerdo (título + imagem) --- */
 .welcome-back {
   grid-area: left;
   background: var(--cor-principal);
@@ -62,20 +60,17 @@ body {
   align-items: center;
 }
 
-/* Título “Bem-vindo de volta!” no topo, em negrito */
 .welcome-back h1 {
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-/* Imagem centralizada abaixo do título */
 .div-img img {
   max-width: 70%;
   height: auto;
 }
 
-/* --- Painel direito: formulário --- */
 .register {
   grid-area: right;
   padding: 40px 60px;
@@ -84,7 +79,6 @@ body {
   justify-content: center;
 }
 
-/* Cabeçalho do form (ex: “Conecte-se” ou “Criar conta”) */
 .register h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -93,47 +87,60 @@ body {
   margin-bottom: 24px;
 }
 
-/* Inputs empilhados e espaçados */
-.register .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.register .form-group input {
+form input[type="text"],
+form input[type="password"] {
+  display: block;
+  width: 90%;
+  max-width: 320px;
+  margin: 0 auto 16px auto;
   padding: 14px 16px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
   transition: border-color 0.2s;
 }
 
-.register .form-group input:focus {
+form input[type="text"]:focus,
+form input[type="password"]:focus {
   outline: none;
   border-color: var(--clique-botao);
 }
 
-/* Botão centralizado e minimalista */
-.register .action-btn {
-  width: 50%;
-  margin: 0 auto;
-  padding: 12px;
-  font-size: 1rem;
+form button#botao-formulario,
+button.voltar-btn {
+  width: 90%;
+  max-width: 200px;
+  height: 45px;
+  padding: 12px 24px;
+  display: block;
+  margin: 0 auto 12px auto;
+  cursor: pointer;
+  border-radius: 20px;
   font-weight: 600;
   background-color: var(--cor-principal);
   color: var(--cor-fundo);
   border: none;
-  border-radius: 20px;
-  cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.register .action-btn:hover {
+form button#botao-formulario:hover,
+button.voltar-btn:hover {
   background-color: var(--clique-botao);
 }
 
-/* --- Responsivo abaixo de 768px --- */
+button.voltar-btn {
+  background-color: white;
+  color: var(--cor-principal);
+  border: 2px solid var(--cor-principal);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+button.voltar-btn:hover {
+  background-color: var(--cor-principal);
+  color: white;
+  border-color: var(--cor-principal);
+}
+
 @media (max-width: 768px) {
   .container {
     display: flex;
@@ -146,7 +153,14 @@ body {
     width: 100%;
     padding: 20px;
   }
-  .register .action-btn {
+  form button#botao-formulario,
+  button.voltar-btn {
     width: 100%;
+    max-width: 100%;
+  }
+  form input[type="text"],
+  form input[type="password"] {
+    width: 100%;
+    max-width: 100%;
   }
 }

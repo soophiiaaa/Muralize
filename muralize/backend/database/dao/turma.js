@@ -21,6 +21,12 @@ class Turma {
   static listarTodos(callback) {
     db.query('SELECT * FROM turma', callback);
   }
+  
+  static listarPorProfessor(id_professor, callback) {
+  const sql = 'SELECT * FROM turma WHERE id_professor = ?';
+  db.query(sql, [id_professor], callback);
+}
+
 
   static buscarPorId(id, callback) {
     db.query('SELECT * FROM turma WHERE id_turma = ?', [id], callback);

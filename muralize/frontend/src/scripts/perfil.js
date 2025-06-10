@@ -42,5 +42,6 @@ window.addEventListener("load", () => {
 });
 
 document.getElementById("btn-sair").addEventListener("click", () => {
+  localStorage.clear();
   window.location.href = "../pages/home.html";
 });

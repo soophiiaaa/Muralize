@@ -28,7 +28,7 @@ function mostrarLogin() {
 }
 
 function voltarSelecao() {
-  window.location.href='home.html'
+  window.location.href = 'home.html'
 }
 
 window.onload = function () {
@@ -44,6 +44,43 @@ window.onload = function () {
     voltarSelecao();
   }
 };
+
+function enviarCadastro(nome, email, senha, tipoUsuario) {
+  let url = '';
+  if (tipoUsuario === 'aluno') {
+    url = 'http://localhost:3000/alunos';
+  } else if (tipoUsuario === 'professor') {
+    url = 'http://localhost:3000/professores';
+  } else {
+    alert('Tipo de usuário inválido.');
+    return;
+  }
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ nome, email, senha })
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(data => { throw new Error(data.error || 'Erro ao cadastrar usuário'); });
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert('Cadastro realizado com sucesso!');
+      if (tipoUsuario === 'aluno') {
+        window.location.href = 'student.html';
+      } else {
+        window.location.href = 'teacher.html';
+      }
+    })
+    .catch(error => {
+      alert(error.message);
+    });
+}
 
 function enviarFormulario(event) {
   event.preventDefault(); // Impede o envio padrão do formulário
@@ -75,18 +112,15 @@ function enviarFormulario(event) {
       emailInput.focus();
       return;
     }
-    if (!senhaInput.value.trim()) {
-      alert("Por favor, preencha a senha.");
+    if (!senhaInput.value.trim() || senhaInput.value.length < 6) {
+      alert("Por favor, preencha a senha com pelo menos 6 caracteres.");
       senhaInput.focus();
       return;
     }
 
-    // Se passou nas validações, redireciona
-    if (tipoUsuario === "aluno") {
-      window.location.href = "student.html";
-    } else if (tipoUsuario === "professor") {
-      window.location.href = "teacher.html";
-    }
+    // Chama a função de cadastro
+    enviarCadastro(nomeInput.value.trim(), emailInput.value.trim(), senhaInput.value, tipoUsuario);
+    return;
   } else {
     // Login: email e senha obrigatórios
     if (!emailInput.value.trim() || !emailValido) {

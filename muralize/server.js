@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const alunoController = require('./backend/controllers/alunoController')
 const professorController = require('./backend/controllers/professorController')
@@ -10,15 +11,16 @@ const app = express()
 const port = 3000
 
 app.use(bodyParser.json())
+app.use(cors())
 
 //simulação de usuário
-app.use((req, res, next) => {
-    req.user = {
-        id: 2,             
-        tipo: 'aluno' 
-    }
-    next()
-})
+// app.use((req, res, next) => {
+//     req.user = {
+//         id: 2,             
+//         tipo: 'aluno' 
+//     }
+//     next()
+// })
 
 app.get('/alunos', alunoController.listarTodos)
 app.get('/alunos/:id', alunoController.buscarPorId)

@@ -3,11 +3,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection( {
     host: 'localhost', 
     user: 'root', 
-<<<<<<< HEAD
-    password: 'slbms20070511', 
-=======
-    password: '', 
->>>>>>> b0ab4a305d68255935965e44c22cdb70d63f22fc
+    password: 'root', 
     database: 'muralize' 
 });
 

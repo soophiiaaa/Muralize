@@ -87,8 +87,9 @@ body {
   margin-bottom: 24px;
 }
 
-form input[type="text"],
-form input[type="password"] {
+form input[type="email"],
+form input[type="password"],
+form input[type="text"] {
   display: block;
   width: 90%;
   max-width: 320px;

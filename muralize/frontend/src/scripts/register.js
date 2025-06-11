@@ -1,4 +1,3 @@
-// Função para ler parâmetros da URL
 function getQueryParam(param) {
   const params = new URLSearchParams(window.location.search);
   return params.get(param);
@@ -36,27 +35,78 @@ function enviarFormulario(event) {
 
   const tipoUsuario = localStorage.getItem("tipoUsuario");
 
+  // Pega os valores dos campos do formulário
+  const nome = document.getElementById("nome")?.value;
+  const email = document.getElementById("email")?.value;
+  const senha = document.getElementById("senha")?.value;
+
+  const botao = document.getElementById("botao-formulario");
+
+  if (botao.textContent === "ENTRAR") {
+    // Lógica de login
+    const dados = { email, senha };
+
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados)
+    })
+      .then(response => {
+        if (response.ok) return response.json();
+        else throw new Error('Login inválido');
+      })
+      .then(data => {
+        // Exemplo: { tipo: 'aluno', id: 123, nome: 'Fulano' }
+        localStorage.setItem('userId', data.id);
+        localStorage.setItem('userTipo', data.tipo);
+        localStorage.setItem('userNome', data.nome);
+
+        if (data.tipo === 'aluno') {
+          window.location.href = 'student.html';
+        } else {
+          window.location.href = 'teacher.html';
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Falha no login: ' + err.message);
+      });
+
+    return; // Impede execução do bloco de cadastro
+  }
+
+  // Cadastro
   if (!tipoUsuario || tipoUsuario === "login") {
     alert("Por favor, selecione se você é aluno ou professor.");
     return;
   }
 
-  const botao = document.getElementById("botao-formulario");
-  if (botao.textContent === "CADASTRAR") {
-    // Redireciona após cadastro
-    if (tipoUsuario === "aluno") {
-      window.location.href = "student.html";
-    } else if (tipoUsuario === "professor") {
-      window.location.href = "teacher.html";
-    }
-  } else {
-    // Redireciona após login
-    if (tipoUsuario === "aluno") {
-      window.location.href = "student.html";
-    } else if (tipoUsuario === "professor") {
-      window.location.href = "teacher.html";
-    }
-  }
+  const dados = { nome, email, senha };
+  const url = (tipoUsuario === 'aluno' ? 'http://localhost:3000/alunos' : 'http://localhost:3000/professores');
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
+  })
+    .then(response => {
+      if (response.ok) {
+        alert(tipoUsuario + ' cadastrado com sucesso!');
+        if (tipoUsuario === "aluno") {
+          window.location.href = "student.html";
+        } else if (tipoUsuario === "professor") {
+          window.location.href = "teacher.html";
+        }
+      } else {
+        return response.json().then(err => {
+          throw new Error(err.error || 'Erro ao cadastrar');
+        });
+      }
+    })
+    .catch(err => {
+      console.error('Erro no cadastro:', err);
+      alert("Erro no cadastro: " + err.message);
+    });
 }
 
 window.onload = function () {
@@ -77,7 +127,6 @@ window.onload = function () {
   if (form && form.tagName === "FORM") {
     form.addEventListener("submit", enviarFormulario);
   } else {
-    // O formulário pode estar dentro da div "formulario"
     const realForm = document.querySelector("#formulario form");
     if (realForm) {
       realForm.addEventListener("submit", enviarFormulario);

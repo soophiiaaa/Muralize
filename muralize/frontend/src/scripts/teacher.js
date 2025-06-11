@@ -1,3 +1,4 @@
+// MENU E PERFIL
 const maisBtn = document.getElementById('mais-btn');
 const menuMais = document.getElementById('menu-mais');
 const perfil = document.getElementById('perfil');
@@ -11,22 +12,6 @@ perfil.addEventListener('click', () => {
   menuPerfil.style.display = menuPerfil.style.display === 'block' ? 'none' : 'block';
 });
 
-function criarTurma() {
-  const modal = document.getElementById('modal-criar-turma');
-  modal.style.display = 'flex';
-  menuMais.style.display = 'none';
-}
-
-document.getElementById('btn-cancelar-criacao').addEventListener('click', () => {
-  const modal = document.getElementById('modal-criar-turma');
-  // Fecha o modal
-  modal.style.display = 'none';
-
-  // Limpa os campos
-  document.getElementById('input-nome').value = '';
-  document.getElementById('input-ano').value = '';
-});
-
 window.addEventListener('click', function (e) {
   if (!maisBtn.contains(e.target) && !menuMais.contains(e.target)) {
     menuMais.style.display = 'none';
@@ -36,6 +21,22 @@ window.addEventListener('click', function (e) {
   }
 });
 
+// ABRIR MODAL DE CRIAÇÃO
+function criarTurma() {
+  const modal = document.getElementById('modal-criar-turma');
+  modal.style.display = 'flex';
+  menuMais.style.display = 'none';
+}
+
+// CANCELAR CRIAÇÃO
+document.getElementById('btn-cancelar-criacao').addEventListener('click', () => {
+  const modal = document.getElementById('modal-criar-turma');
+  modal.style.display = 'none';
+  document.getElementById('input-nome').value = '';
+  document.getElementById('input-ano').value = '';
+});
+
+// CONFIRMAR CRIAÇÃO DE TURMA
 document.getElementById('btn-confirmar-criacao').addEventListener('click', () => {
   const nome = document.getElementById('input-nome').value.trim();
   const ano = document.getElementById('input-ano').value.trim();
@@ -46,23 +47,39 @@ document.getElementById('btn-confirmar-criacao').addEventListener('click', () =>
     return;
   }
 
-  const turma = document.createElement('div');
-  turma.className = 'turma';
-  turma.textContent = `${nome} - ${ano}`;
-  turma.onclick = () => {
-  const url = `turma.html?nome=${encodeURIComponent(nome)}&ano=${encodeURIComponent(ano)}`;
-  window.location.href = url;
-};
+  const idProfessor = localStorage.getItem('userId');
+  const dados = { nome, ano, professorId: idProfessor };
 
-  document.getElementById('turmas').appendChild(turma);
+  fetch('http://localhost:3000/turmas', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Erro ao criar turma");
+      return res.json();
+    })
+    .then(turma => {
+      const div = document.createElement('div');
+      div.className = 'turma';
+      div.textContent = `${turma.nome} - ${turma.ano}`;
+      div.onclick = () => {
+        const url = `turma.html?nome=${encodeURIComponent(turma.nome)}&ano=${encodeURIComponent(turma.ano)}`;
+        window.location.href = url;
+      };
+      document.getElementById('turmas').appendChild(div);
 
-  // Fechar e limpar
-  modal.style.display = 'none';
-  document.getElementById('input-nome').value = '';
-  document.getElementById('input-ano').value = '';
+      modal.style.display = 'none';
+      document.getElementById('input-nome').value = '';
+      document.getElementById('input-ano').value = '';
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Erro ao criar turma: " + err.message);
+    });
 });
 
-// Fecha modal se clicar fora
+// FECHAR MODAL SE CLICAR FORA
 window.addEventListener('click', (e) => {
   const modal = document.getElementById('modal-criar-turma');
   if (e.target === modal) {
@@ -70,5 +87,22 @@ window.addEventListener('click', (e) => {
   }
 });
 
-
-
+// CARREGAR TURMAS DO PROFESSOR
+window.addEventListener('DOMContentLoaded', () => {
+  const idProfessor = localStorage.getItem('userId');
+  fetch(`http://localhost:3000/turmas?professorId=${idProfessor}`)
+    .then(res => res.json())
+    .then(turmas => {
+      const container = document.getElementById('turmas');
+      turmas.forEach(turma => {
+        const div = document.createElement('div');
+        div.className = 'turma';
+        div.textContent = `${turma.nome} - ${turma.ano}`;
+        div.onclick = () => {
+          window.location.href = `turma.html?nome=${encodeURIComponent(turma.nome)}&ano=${encodeURIComponent(turma.ano)}`;
+        };
+        container.appendChild(div);
+      });
+    })
+    .catch(err => console.error('Erro ao buscar turmas:', err));
+});

@@ -18,6 +18,7 @@
     }
 
     // Esconder menu se clicar fora
+
     document.addEventListener('click', (e) => {
       const menu = document.getElementById('dropdownMenu');
       const botao = document.querySelector('.botao-mais');

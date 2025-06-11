@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const alunoController = require('./backend/controllers/alunoController')
 const professorController = require('./backend/controllers/professorController')
+const loginController = require('./backend/controllers/loginController')
 const turmaController = require('./backend/controllers/turmaController')
 const atividadeController = require('./backend/controllers/atividadeController')
 
@@ -21,6 +22,8 @@ app.use(cors())
 //     }
 //     next()
 // })
+
+app.post('/login', loginController.login)
 
 app.get('/alunos', alunoController.listarTodos)
 app.get('/alunos/:id', alunoController.buscarPorId)

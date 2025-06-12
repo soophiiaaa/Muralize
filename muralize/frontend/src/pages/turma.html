@@ -10,21 +10,34 @@
 
   <div class="titulo-turma" id="tituloTurma">Turma</div>
 
-  <div class="menu-superior">
-    <button class="botao-mais" onclick="toggleDropdown()">+</button>
-    <div class="dropdown" id="dropdownMenu">
-      <a onclick="adicionarQuadro('CADASTRAR ATIVIDADE')">CADASTRAR ATIVIDADE</a>
-      <a onclick="adicionarQuadro('REMOTE')">REMOTE</a>
-      <a onclick="adicionarQuadro('REMOVE ATIVIDADE')">REMOVER ATIVIDADE</a>
-    </div>
+
+  <div id="botaoCriarContainer" class="criar-atividade-area">
+    <button id="botaoCriarAtividade" onclick="abrirFormularioAtividade()">+ Criar Atividade</button>
   </div>
 
-  <div id="areaQuadros">
-
+  <div id="formAtividadeContainer" class="formulario escondido">
+    <h4>Nova Atividade</h4>
+    <input type="text" id="tipoAtividade" placeholder="Tipo da Atividade" />
+    <input type="text" id="nomeAtividade" placeholder="Nome da Atividade" />
+    <input type="date" id="dataEntrega" />
+    <textarea id="descricao" placeholder="Explicação breve"></textarea>
+    <button onclick="criarAtividade()">Criar</button>
   </div>
 
-  <script src="../scripts/turma.js"> 
-  </script>
 
+  <div id="atividadesLista"></div>
+
+  <div id="secao-remote" class="secao escondido">
+    <h3>Chat ao Vivo</h3>
+    <div id="chatBox" class="chat-box"></div>
+    <input type="text" id="mensagem" placeholder="Digite sua mensagem..." />
+    <button onclick="enviarMensagem()">Enviar</button>
+  </div>
+  <div id="menuInferior" class="menu-inferior">
+    <div class="menu-botao" onclick="mostrarSecao('atividades')">Atividades</div>
+    <div class="menu-botao" onclick="mostrarSecao('remote')">Remote</div>
+  </div>
+
+  <script src="../scripts/turma.js"></script>
 </body>
 </html>

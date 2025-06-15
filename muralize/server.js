@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'frontend', 'src')));
 
 // Rotas API
-app.post('/login', loginController.autenticar);
+app.post('/login', loginController.login);
 
 app.get('/alunos', alunoController.listarTodos);
 app.get('/alunos/:id', alunoController.buscarPorId);
@@ -32,7 +32,7 @@ app.post('/professores', professorController.criar);
 app.put('/professores/:id', professorController.atualizar);
 app.delete('/professores/:id', professorController.deletar);
 
-app.get('/turmas', turmaController.listarTodas);
+app.get('/turmas', turmaController.listarTodos);
 app.get('/turmas/:id', turmaController.buscarPorId);
 app.post('/turmas', turmaController.criar);
 app.put('/turmas/:id', turmaController.atualizar);

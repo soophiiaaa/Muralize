@@ -63,6 +63,6 @@ npm start
 ## 🚧 Status do Projeto
 
 > **Em desenvolvimento 🚧**  
-Ainda estamos trabalhando na implementação de funcionalidades essenciais e testes. Feedbacks são bem-vindos!
+Ainda estamos trabalhando na implementação de funcionalidades essenciais, correções de bugs e testes. Feedbacks são bem-vindos!
 
 ---
